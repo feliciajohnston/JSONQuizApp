@@ -1,116 +1,138 @@
 {
-  "id": "solar_system_cheat_sheet",
-  "name": "Solar System",
-  "description": "Basic information about our solar system",
-  "metadata": {
-    "sourceName": "NASA",
-    "sourceUrl": "http://nssdc.gsfc.nasa.gov/planetary/factsheet/"
-  },
-  "Sun": [
-    {
-      "Distance": "149,597,900 km"
+    "id": "solar_system_cheat_sheet",
+    "name": "Solar System",
+    "description": "Basic information about our solar system",
+    "metadata": {
+        "sourceName": "NASA",
+        "sourceUrl": "http://nssdc.gsfc.nasa.gov/planetary/factsheet/"
     },
-    {
-      "Mass": "1.989 x 10^30 kg"
-    },
-    {
-      "Temperature": "1.56×10^7 K"
-    },
-    {
-      "Volume": "1.41×10^18 km³"
-    },
-    {
-      "Moons": []
-    }
-  ],
-  "Mercury": [
-    {
-      "Distance": "69,816,900 km"
-    },
-    {
-      "Mass": "3.3011×10^23 kg"
-    },
-    {
-      "Temperature": "440 K"
-    },
-    {
-      "Volume": "6.083×10^10 km³"
-    },
-    {
-      "Moons": []
-    }
-  ],
-  "Venus": [
-    {
-      "Distance": "108,939,000 km"
-    },
-    {
-      "Mass": "4.8675×10^24 kg"
-    },
-    {
-      "Temperature": "737 K"
-    },
-    {
-      "Volume": "9.2843×10^11 km³"
-    },
-    {
-      "Moons": []
-    }
-  ],
-  "Earth": [
-    {
-      "Distance": "152,100,000 km"
-    },
-    {
-      "Mass": "5.97237×10^24 kg"
-    },
-    {
-      "Temperature": "288 K"
-    },
-    {
-      "Volume": "1.08321×10^12 km³"
-    },
-    {
-      "Moons": [
-        "Moon"
-      ]
-    }
-  ],
-  "Mars": [
-    {
-      "Distance": "249,209,300 km"
-    },
-    {
-      "Mass": "6.4171×10^23 kg"
-    },
-    {
-      "Temperature": "208 K"
-    },
-    {
-      "Volume": "1.6318×10^11 km³"
-    },
-    {
-      "Moons": [
-        "Deimos",
-        "Phobos"
-      ]
-    }
-  ],
-  "Jupiter": [
-    {
-      "Distance": "816,520,800 km"
-    },
-    {
-      "Mass": "1.8986×10^27 kg"
-    },
-    {
-      "Temperature": "163 K"
-    },
-    {
-      "Volume": "1.43128×10^15 km³"
-    },
-    {
-      "Moons": [
+    "aliases": [
+        "solar",
+        "planet",
+        "planets",
+        "solarsystem",
+        "sun",
+        "earth",
+        "mercury",
+        "mars",
+        "jupiter",
+        "saturn",
+        "uranus",
+        "neptune"
+    ],
+    "template_type": "reference",
+    "section_order": [
+        "Sun",
+        "Mercury",
+        "Venus",
+        "Earth",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptune"
+    ],
+    "sections": {
+        "Sun": [
+            {
+                "Distance": "149,597,900 km"
+            },
+            {
+                "Mass": "1.989 x 10^30 kg"
+            },
+            {
+                "Temperature": "1.56×10^7 K"
+            },
+            {               
+                "Volume": "1.41×10^18 km³"
+            },
+			{
+				"Moons": []
+			}
+        ],
+        "Mercury": [
+            {                
+                "Distance": "69,816,900 km"
+            },
+            {
+                "Mass": "3.3011×10^23 kg"
+            },
+            {
+                "Temperature": "440 K"
+            },
+            {
+                "Volume": "6.083×10^10 km³"
+            },
+			{
+				"Moons": []
+			}
+        ],
+        "Venus": [
+            {
+                "Distance": "108,939,000 km"
+            },
+            {
+                "Mass": "4.8675×10^24 kg"
+            },
+            {
+                "Temperature": "737 K"
+            },
+            {
+                "Volume": "9.2843×10^11 km³"
+            },
+			{
+				"Moons": []
+			}
+        ],
+        "Earth": [
+            {
+                "Distance": "152,100,000 km"
+            },
+            {
+                "Mass": "5.97237×10^24 kg"
+            },
+            {
+                "Temperature": "288 K"
+            },
+            {
+                "Volume": "1.08321×10^12 km³"
+            },
+			{
+				"Moons": ["Moon"]
+			}
+        ],
+        "Mars": [
+            {
+                "Distance": "249,209,300 km"
+            },
+            {
+                "Mass": "6.4171×10^23 kg"
+            },
+            {
+                "Temperature": "208 K"
+            },
+            {
+                "Volume": "1.6318×10^11 km³"
+            },
+			{
+				"Moons": ["Deimos","Phobos"]
+			}
+        ],
+        "Jupiter": [
+            {
+                "Distance": "816,520,800 km"
+            },
+            {
+                "Mass": "1.8986×10^27 kg"
+            },
+            {
+                "Temperature": "163 K"
+            },
+            {
+                "Volume": "1.43128×10^15 km³"
+            },
+			{
+				"Moons": [
         "Metis",
         "Adrastea",
         "Amalthea",
@@ -175,23 +197,23 @@
         "Cyllene",
         "S/2003 J2"
       ]
-    }
-  ],
-  "Saturn": [
-    {
-      "Distance": "1,513,325,783 km"
-    },
-    {
-      "Mass": "5.6846×10^26 kg"
-    },
-    {
-      "Temperature": "133 K"
-    },
-    {
-      "Volume": "8.2713×10^14 km³"
-    },
-    {
-      "Moons": [
+			}
+        ],
+        "Saturn": [
+            {
+                "Distance": "1,513,325,783 km"
+            },
+            {
+                "Mass": "5.6846×10^26 kg"
+            },
+            {
+                "Temperature": "133 K"
+            },
+            {
+                "Volume": "8.2713×10^14 km³"
+            },
+			{
+				"Moons": [
         "Tarqeq",
         "Pan",
         "Daphnis",
@@ -254,23 +276,23 @@
         "Loge",
         "Fornjot"
       ]
-    }
-  ],
-  "Uranus": [
-    {
-      "Distance": "3,004,419,704 km"
-    },
-    {
-      "Mass": "8.68×10^25 kg"
-    },
-    {
-      "Temperature": "78 K"
-    },
-    {
-      "Volume": "6.833×10^13 km³"
-    },
-    {
-      "Moons": [
+			}
+        ],
+        "Uranus": [
+            {
+                "Distance": "3,004,419,704 km"
+            },
+            {
+                "Mass": "8.68×10^25 kg"
+            },
+            {
+                "Temperature": "78 K"
+            },
+            {
+                "Volume": "6.833×10^13 km³"
+            },
+			{
+				"Moons": [
         "Cordelia",
         "Ophelia",
         "Bianca",
@@ -299,23 +321,23 @@
         "Setebos",
         "Ferdinand"
       ]
-    }
-  ],
-  "Neptune": [
-    {
-      "Distance": "4,553,946,490 km"
-    },
-    {
-      "Mass": "1.0243×10^26 kg"
-    },
-    {
-      "Temperature": "73 K"
-    },
-    {
-      "Volume": "6.254×10^13 km³"
-    },
-    {
-      "Moons": [
+			}
+        ],
+        "Neptune": [
+            {
+                "Distance": "4,553,946,490 km"
+            },
+            {
+                "Mass": "1.0243×10^26 kg"
+            },
+            {
+                "Temperature": "73 K"
+            },
+            {
+                "Volume": "6.254×10^13 km³"
+            },
+			{
+				"Moons": [
         "Naiad",
         "Thalassa",
         "Despina",
@@ -330,6 +352,7 @@
         "Psamathe",
         "Neso"
       ]
+			}
+        ]
     }
-  ]
 }
