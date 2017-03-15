@@ -80,25 +80,43 @@ public class MainActivity extends AppCompatActivity {
 
     private void askQuestion() {
         ranQuest = questions.get((int) (Math.random() * questions.size() -1 ));
+        setButtons();
+        questionText.setText(ranQuest.getQuestion());
+
         //get random question
         //set visual values
+
+    }
+
+    private void setButtons() {
+        ArrayList<String> answers = new ArrayList<>();
+        answers.add(ranQuest.getAnswer());
+        answers.add(ranQuest.getAnswerFalse1());
+        answers.add(ranQuest.getAnswerFalse2());
+        answers.add(ranQuest.getAnswerFalse3());
+        answers.
+
+        String one = answers.get((int) (Math.random() * 3 ));
+
+
+
+
+        //random set 4 answers to butts
         //set answerNum to correct answer #butt
     }
 
     private void setQuestions() {
-        //ArrayList<String> answerFalse = new ArrayList<>();
-        //answerFalse.add("")
-
-        //questions.add(new Question("object" , "variable", findAnswer(), "false answers"));
-        //find way to get array of false answers
+        //questions.add(new Question("object" , "variable", findAnswer(), "false answer 1", "false answer2", "false answer3"));
         //format question: what is the [objects]'s [variable]?
+
+
     }
 
     private String findAnswer() {
         String answer = "";
         String jsonString = "";
         try {
-            InputStream fileInput = getAssets().open(" ");
+            InputStream fileInput = getAssets().open("Planets");
             BufferedReader reader = new BufferedReader(new InputStreamReader(fileInput));
             String line;
 
@@ -117,10 +135,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(jsonData != null){
+
+            Log.d(TAG, jsonData.optJSONObject(ranQuest.getObject()).optString(ranQuest.getVariable()));
             //find answer
             //get object and variable from question
-            ranQuest.getObject();
-            ranQuest.getVariable();
+
+
 
         }
 
