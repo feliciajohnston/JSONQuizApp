@@ -94,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
         answers.add(ranQuest.getAnswerFalse1());
         answers.add(ranQuest.getAnswerFalse2());
         answers.add(ranQuest.getAnswerFalse3());
-        answers.
 
         String one = answers.get((int) (Math.random() * 3 ));
 
