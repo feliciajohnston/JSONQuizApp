@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,20 +16,23 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
     private ArrayList<Question> questions;
     private Button butt1, butt2, butt3, butt4;
     private TextView questionText, pointText;
-    private int answerNum;
     private Question ranQuest;
+    ArrayList<Answer> answers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        answers = new ArrayList<>();
 
         butt1 = (Button) findViewById(R.id.button);
         butt2 = (Button) findViewById(R.id.button2);
@@ -44,34 +48,42 @@ public class MainActivity extends AppCompatActivity {
         butt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkAnswer();
+                checkAnswer(0);
             }
         });
 
         butt2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkAnswer();
+                checkAnswer(1);
             }
         });
 
         butt3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkAnswer();
+                checkAnswer(2);
             }
         });
 
         butt4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkAnswer();
+                checkAnswer(3);
             }
         });
 
     }
 
-    private void checkAnswer() {
+    private void checkAnswer(int i) {
+        if(answers.get(i).getCorrect())
+        {
+            Toast.makeText(MainActivity.this, "CORRECT", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(MainActivity.this, "WRONG", Toast.LENGTH_SHORT).show();
+        }
+
         //check if clicked is right answer
         //if yes; ++point
         //if no; reveal answer, --point
@@ -89,25 +101,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setButtons() {
-        ArrayList<String> answers = new ArrayList<>();
         answers.add(ranQuest.getAnswer());
         answers.add(ranQuest.getAnswerFalse1());
         answers.add(ranQuest.getAnswerFalse2());
         answers.add(ranQuest.getAnswerFalse3());
-        answers.
-
-        String one = answers.get((int) (Math.random() * 3 ));
-
-
-
-
-        //random set 4 answers to butts
-        //set answerNum to correct answer #butt
+        Collections.shuffle(answers);
+        butt1.setText(answers.get(0).getAnswer());
+        butt2.setText(answers.get(1).getAnswer());
+        butt3.setText(answers.get(2).getAnswer());
+        butt4.setText(answers.get(3).getAnswer());
     }
 
     private void setQuestions() {
         //questions.add(new Question("object" , "variable", findAnswer(), "false answer 1", "false answer2", "false answer3"));
         //format question: what is the [objects]'s [variable]?
+        questions.add(new Question("Sun","Mass", new Answer(findAnswer(), true) , new Answer("678kg", false), new Answer("gjhrdb", false) , new Answer("correct", false)));
 
 
     }
