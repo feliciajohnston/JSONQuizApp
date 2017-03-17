@@ -17,6 +17,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
@@ -26,12 +28,20 @@ public class MainActivity extends AppCompatActivity {
     private Problem randProb;
     private ArrayList<Answer> answers;
     private ArrayList<Problem> problems;
+    private Map<String, Integer> planetCats;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        planetCats = new HashMap<>();
+        planetCats.put("distance", 0);
+        planetCats.put("mass", 1);
+        planetCats.put("temperature", 2);
+        planetCats.put("volume", 3);
 
         answers = new ArrayList<>();
         questions = new ArrayList<>();
@@ -77,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setQuestions() {
         //format question: what is the [objects]'s [variable]?
-        questions.add(new Question("Sun","Mass"));
+        questions.add(new Question("Sun","mass"));
     }
 
     private void setAnswers() {
@@ -125,6 +135,13 @@ public class MainActivity extends AppCompatActivity {
         String answer = "";
         String jsonString = "";
         try {
+            String[] files = getAssets().list("");
+            String fileNames = "";
+            for(String s : files) {
+                fileNames+=s + " ";
+
+            }
+            Log.d(TAG, "findAnswer: " + fileNames);
             InputStream fileInput = getAssets().open("Planets.json");
             BufferedReader reader = new BufferedReader(new InputStreamReader(fileInput));
             String line;
@@ -144,7 +161,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(jsonData != null){
-            answer = jsonData.optJSONObject(quest.getObject()).optString(quest.getVariable());
+            Log.d(TAG, "findAnswer: " + quest.getObject());
+            answer = jsonData.optJSONArray(quest.getObject()).optString(planetCats.get(quest.getVariable()));
             //find answer
             //get object and variable from question
 

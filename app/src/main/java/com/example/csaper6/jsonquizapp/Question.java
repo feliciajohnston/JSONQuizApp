@@ -23,7 +23,7 @@ public class Question {
     }
 
     public String getVariable() {
-        return variable;
+        return variable ;
     }
 
     public void setVariable(String variable) {
