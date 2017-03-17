@@ -23,8 +23,9 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Question> questions;
     private Button butt1, butt2, butt3, butt4;
     private TextView questionText, pointText;
-    private Question ranQuest;
-    ArrayList<Answer> answers;
+    private Problem randProb;
+    private ArrayList<Answer> answers;
+    private ArrayList<Problem> problems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         answers = new ArrayList<>();
+        questions = new ArrayList<>();
+        problems = new ArrayList<>();
 
         butt1 = (Button) findViewById(R.id.button);
         butt2 = (Button) findViewById(R.id.button2);
@@ -42,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
         pointText = (TextView) findViewById(R.id.textView2);
 
         setQuestions();
-
-        askQuestion();
+        setAnswers();
+        askProblem();
 
         butt1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,21 +54,18 @@ public class MainActivity extends AppCompatActivity {
                 checkAnswer(0);
             }
         });
-
         butt2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 checkAnswer(1);
             }
         });
-
         butt3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 checkAnswer(2);
             }
         });
-
         butt4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,6 +73,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setQuestions() {
+        //format question: what is the [objects]'s [variable]?
+        questions.add(new Question("Sun","Mass"));
+    }
+
+    private void setAnswers() {
+        for(int i = 0; i <= questions.size()-1; i++){
+            problems.add(new Problem(questions.get(i), new Answer(findAnswer(questions.get(i)), true),
+                    new Answer("blah", false), new Answer("merp", false), new Answer("meh", false)));
+        }
     }
 
     private void checkAnswer(int i) {
@@ -90,21 +102,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void askQuestion() {
-        ranQuest = questions.get((int) (Math.random() * questions.size() -1 ));
+    private void askProblem() {
+        randProb = problems.get((int) (Math.random() * questions.size() -1 ));
         setButtons();
-        questionText.setText(ranQuest.getQuestion());
-
-        //get random question
-        //set visual values
-
+        questionText.setText(randProb.getQuest().getQuestion());
     }
 
     private void setButtons() {
-        answers.add(ranQuest.getAnswer());
-        answers.add(ranQuest.getAnswerFalse1());
-        answers.add(ranQuest.getAnswerFalse2());
-        answers.add(ranQuest.getAnswerFalse3());
+        answers.add(randProb.getAnswer());
+        answers.add(randProb.getFalse1());
+        answers.add(randProb.getFalse2());
+        answers.add(randProb.getFalse3());
         Collections.shuffle(answers);
         butt1.setText(answers.get(0).getAnswer());
         butt2.setText(answers.get(1).getAnswer());
@@ -112,19 +120,12 @@ public class MainActivity extends AppCompatActivity {
         butt4.setText(answers.get(3).getAnswer());
     }
 
-    private void setQuestions() {
-        //questions.add(new Question("object" , "variable", findAnswer(), "false answer 1", "false answer2", "false answer3"));
-        //format question: what is the [objects]'s [variable]?
-        questions.add(new Question("Sun","Mass", new Answer(findAnswer(), true) , new Answer("678kg", false), new Answer("gjhrdb", false) , new Answer("correct", false)));
 
-
-    }
-
-    private String findAnswer() {
+    private String findAnswer(Question quest) {
         String answer = "";
         String jsonString = "";
         try {
-            InputStream fileInput = getAssets().open("Planets");
+            InputStream fileInput = getAssets().open("Planets.json");
             BufferedReader reader = new BufferedReader(new InputStreamReader(fileInput));
             String line;
 
@@ -143,8 +144,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(jsonData != null){
-
-            Log.d(TAG, jsonData.optJSONObject(ranQuest.getObject()).optString(ranQuest.getVariable()));
+            answer = jsonData.optJSONObject(quest.getObject()).optString(quest.getVariable());
             //find answer
             //get object and variable from question
 
