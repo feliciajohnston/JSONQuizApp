@@ -22,12 +22,13 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
-    private ArrayList<Question> questions;
     private Button butt1, butt2, butt3, butt4;
     private TextView questionText, pointText;
     private Problem randProb;
+    private ArrayList<Question> questions;
     private ArrayList<Answer> answers;
     private ArrayList<Problem> problems;
+    private ArrayList<String> falseAnswers;
     private Map<String, Integer> planetCats;
 
 
@@ -38,15 +39,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         planetCats = new HashMap<>();
-        planetCats.put("Distance", 0);
-        planetCats.put("Mass", 1);
-        planetCats.put("Temperature", 2);
-        planetCats.put("Volume", 3);
-
+        falseAnswers = new ArrayList<>();
         answers = new ArrayList<>();
         questions = new ArrayList<>();
         problems = new ArrayList<>();
-
+        //wire widgets
         butt1 = (Button) findViewById(R.id.button);
         butt2 = (Button) findViewById(R.id.button2);
         butt3 = (Button) findViewById(R.id.button3);
@@ -54,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         questionText = (TextView) findViewById(R.id.textView);
         pointText = (TextView) findViewById(R.id.textView2);
 
-        setQuestions();
+        setArrays();
         setAnswers();
         askProblem();
 
@@ -85,16 +82,30 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void setQuestions() {
-        //format question: what is the [objects]'s [variable]?
+    private void setArrays() {
+        //hashmap vars
+        planetCats.put("Distance", 0);
+        planetCats.put("Mass", 1);
+        planetCats.put("Temperature", 2);
+        planetCats.put("Volume", 3);
+        //fake answer choices
+        falseAnswers.add("69,816");
+        falseAnswers.add("440");
+        falseAnswers.add("3.3011×10^23");
+        falseAnswers.add("108,939,000");
+        //new question object
         questions.add(new Question("Sun","Mass"));
         questions.add(new Question("Mercury" , "Distance"));
+    }
+
+    private String getFalseAnswer(){
+        return falseAnswers.get((int) (Math.random() * falseAnswers.size() -1 ));
     }
 
     private void setAnswers() {
         for(int i = 0; i <= questions.size()-1; i++){
             problems.add(new Problem(questions.get(i), new Answer(findAnswer(questions.get(i)), true),
-                    new Answer("blah", false), new Answer("merp", false), new Answer("meh", false)));
+                    new Answer(getFalseAnswer(), false) , new Answer(getFalseAnswer(), false), new Answer(getFalseAnswer(), false)));
         }
     }
 
@@ -130,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
         butt3.setText(answers.get(2).getAnswer());
         butt4.setText(answers.get(3).getAnswer());
     }
-
 
     private String findAnswer(Question quest) {
         String answer = "";
