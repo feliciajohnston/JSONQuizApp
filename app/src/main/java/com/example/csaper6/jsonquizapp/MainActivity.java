@@ -38,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         planetCats = new HashMap<>();
-        planetCats.put("distance", 0);
-        planetCats.put("mass", 1);
-        planetCats.put("temperature", 2);
-        planetCats.put("volume", 3);
+        planetCats.put("Distance", 0);
+        planetCats.put("Mass", 1);
+        planetCats.put("Temperature", 2);
+        planetCats.put("Volume", 3);
 
         answers = new ArrayList<>();
         questions = new ArrayList<>();
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setQuestions() {
         //format question: what is the [objects]'s [variable]?
-        questions.add(new Question("Sun","mass"));
+        questions.add(new Question("Sun","Mass"));
     }
 
     private void setAnswers() {
@@ -161,8 +161,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(jsonData != null){
-            Log.d(TAG, "findAnswer: " + quest.getObject());
-            answer = jsonData.optJSONArray(quest.getObject()).optString(planetCats.get(quest.getVariable()));
+            Log.d(TAG, "findAnswer: " + planetCats.get(quest.getVariable()));
+            answer = jsonData.optJSONArray(quest.getObject()).optJSONObject(planetCats.get(quest.getVariable())).optString(quest.getVariable());
             //find answer
             //get object and variable from question
 
