@@ -20,40 +20,20 @@ public class Problem {
         return quest;
     }
 
-    public void setQuest(Question quest) {
-        this.quest = quest;
-    }
-
     public Answer getAnswer() {
         return answer;
-    }
-
-    public void setAnswer(Answer answer) {
-        this.answer = answer;
     }
 
     public Answer getFalse1() {
         return false1;
     }
 
-    public void setFalse1(Answer false1) {
-        this.false1 = false1;
-    }
-
     public Answer getFalse2() {
         return false2;
     }
 
-    public void setFalse2(Answer false2) {
-        this.false2 = false2;
-    }
-
     public Answer getFalse3() {
         return false3;
-    }
-
-    public void setFalse3(Answer false3) {
-        this.false3 = false3;
     }
 
 }

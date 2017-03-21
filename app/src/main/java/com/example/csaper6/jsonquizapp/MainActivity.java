@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView questionText, pointText;
     private Problem randProb;
     private ArrayList<Question> questions;
-    private ArrayList<Answer> answers;
+    private ArrayList<Answer> currentAnswers;
     private ArrayList<Problem> problems;
     private ArrayList<String> falseAnswers;
     private Map<String, Integer> planetCats;
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         planetCats = new HashMap<>();
         falseAnswers = new ArrayList<>();
-        answers = new ArrayList<>();
+        currentAnswers = new ArrayList<>();
         questions = new ArrayList<>();
         problems = new ArrayList<>();
         //wire widgets
@@ -52,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
         pointText = (TextView) findViewById(R.id.textView2);
 
         setArrays();
-        setAnswers();
-        askProblem();
+        createProblems();
+        setDisplay();
 
         butt1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,15 +102,33 @@ public class MainActivity extends AppCompatActivity {
         return falseAnswers.get((int) (Math.random() * falseAnswers.size() -1 ));
     }
 
-    private void setAnswers() {
+    private void createProblems() {
         for(int i = 0; i <= questions.size()-1; i++){
             problems.add(new Problem(questions.get(i), new Answer(findAnswer(questions.get(i)), true),
                     new Answer(getFalseAnswer(), false) , new Answer(getFalseAnswer(), false), new Answer(getFalseAnswer(), false)));
         }
     }
 
+    private void setDisplay() {
+        randProb = problems.get((int) (Math.random() * questions.size() -1 ));
+        setButtons();
+        questionText.setText(randProb.getQuest().getQuestion());
+    }
+
+    private void setButtons() {
+        currentAnswers.add(randProb.getAnswer());
+        currentAnswers.add(randProb.getFalse1());
+        currentAnswers.add(randProb.getFalse2());
+        currentAnswers.add(randProb.getFalse3());
+        Collections.shuffle(currentAnswers);
+        butt1.setText(currentAnswers.get(0).getAnswer());
+        butt2.setText(currentAnswers.get(1).getAnswer());
+        butt3.setText(currentAnswers.get(2).getAnswer());
+        butt4.setText(currentAnswers.get(3).getAnswer());
+    }
+
     private void checkAnswer(int i) {
-        if(answers.get(i).getCorrect())
+        if(currentAnswers.get(i).getCorrect())
         {
             Toast.makeText(MainActivity.this, "CORRECT", Toast.LENGTH_SHORT).show();
         }
@@ -122,24 +140,6 @@ public class MainActivity extends AppCompatActivity {
         //if yes; ++point
         //if no; reveal answer, --point
 
-    }
-
-    private void askProblem() {
-        randProb = problems.get((int) (Math.random() * questions.size() -1 ));
-        setButtons();
-        questionText.setText(randProb.getQuest().getQuestion());
-    }
-
-    private void setButtons() {
-        answers.add(randProb.getAnswer());
-        answers.add(randProb.getFalse1());
-        answers.add(randProb.getFalse2());
-        answers.add(randProb.getFalse3());
-        Collections.shuffle(answers);
-        butt1.setText(answers.get(0).getAnswer());
-        butt2.setText(answers.get(1).getAnswer());
-        butt3.setText(answers.get(2).getAnswer());
-        butt4.setText(answers.get(3).getAnswer());
     }
 
     private String findAnswer(Question quest) {
@@ -179,4 +179,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    // clear display after answered!! (clear answer array)
 }

@@ -15,8 +15,9 @@
         android:text="@string/random_question"
         android:id="@+id/textView"
         android:textSize="20sp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@+id/tableLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="65dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -24,16 +25,15 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/points"
         android:id="@+id/textView2"
+        android:textSize="15sp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textSize="15sp" />
+        android:layout_centerHorizontal="true" />
 
     <TableLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tableLayout"
-        android:layout_marginBottom="38dp"
-        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true">
 
         <TableRow
@@ -43,16 +43,18 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Answer 1"
-                android:id="@+id/button"
-                android:textSize="15dp" />
+                android:id="@+id/button2"
+                android:textSize="15sp"
+                android:layout_gravity="center"
+                android:gravity="center" />
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Answer 2 "
-                android:id="@+id/button2"
-                android:textSize="15dp" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/button"
+                android:textSize="15sp"
+                android:layout_gravity="center"
+                android:layout_column="1" />
         </TableRow>
 
         <TableRow
@@ -62,18 +64,18 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Answer 3"
                 android:id="@+id/button3"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:layout_gravity="center" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Answer 4"
                 android:id="@+id/button4"
                 android:layout_below="@+id/tableLayout"
                 android:layout_alignStart="@+id/textView"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:layout_gravity="center" />
         </TableRow>
 
     </TableLayout>

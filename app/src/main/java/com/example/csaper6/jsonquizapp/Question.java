@@ -18,24 +18,12 @@ public class Question {
         return object;
     }
 
-    public void setObject(String object) {
-        this.object = object;
-    }
-
     public String getVariable() {
         return variable ;
     }
 
-    public void setVariable(String variable) {
-        this.variable = variable;
-    }
-
     public String getQuestion() {
         return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
     }
 
 }
