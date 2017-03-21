@@ -1,6 +1,7 @@
 package com.example.csaper6.jsonquizapp;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Problem> problems;
     private ArrayList<String> falseAnswers;
     private Map<String, Integer> planetCats;
+    private boolean correct = false;
+    private int points = 0;
+    private View coordinatorLayout;
 
 
     @Override
@@ -50,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         butt4 = (Button) findViewById(R.id.button4);
         questionText = (TextView) findViewById(R.id.textView);
         pointText = (TextView) findViewById(R.id.textView2);
+        coordinatorLayout = findViewById(R.id.coordinatorLayout);
 
         setArrays();
         createProblems();
@@ -131,15 +136,33 @@ public class MainActivity extends AppCompatActivity {
         if(currentAnswers.get(i).getCorrect())
         {
             Toast.makeText(MainActivity.this, "CORRECT", Toast.LENGTH_SHORT).show();
+            correct = true;
+            points++;
+            Snackbar snackbar = Snackbar.make(coordinatorLayout, "Correct", Snackbar.LENGTH_INDEFINITE).setAction("Next", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    setDisplay();
+                }
+            });
+            snackbar.show();
         }
         else{
             Toast.makeText(MainActivity.this, "WRONG", Toast.LENGTH_SHORT).show();
+            points--;
+            Snackbar snackbar = Snackbar.make(coordinatorLayout, "Correct Answer", Snackbar.LENGTH_INDEFINITE).setAction("Next", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    setDisplay();
+                }
+            });
+            snackbar.show();
         }
 
         //check if clicked is right answer
         //if yes; ++point
         //if no; reveal answer, --point
 
+        correct = false;
     }
 
     private String findAnswer(Question quest) {
