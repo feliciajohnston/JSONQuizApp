@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
     private void setQuestions() {
         //format question: what is the [objects]'s [variable]?
         questions.add(new Question("Sun","Mass"));
+        questions.add(new Question("Mercury" , "Distance"));
     }
 
     private void setAnswers() {
@@ -163,14 +164,7 @@ public class MainActivity extends AppCompatActivity {
         if(jsonData != null){
             Log.d(TAG, "findAnswer: " + planetCats.get(quest.getVariable()));
             answer = jsonData.optJSONArray(quest.getObject()).optJSONObject(planetCats.get(quest.getVariable())).optString(quest.getVariable());
-            //find answer
-            //get object and variable from question
-
-
-
         }
-
-
         return answer;
     }
 
