@@ -141,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
     private void checkAnswer(int i) {
         if(currentAnswers.get(i).getCorrect())
         {
-
             points++;
             Snackbar snackbar = Snackbar.make(coordinatorLayout, "Correct", Snackbar.LENGTH_INDEFINITE).setAction("Next", new View.OnClickListener() {
                 @Override
@@ -163,10 +162,16 @@ public class MainActivity extends AppCompatActivity {
             snackbar.show();
         }
 
-        //check if clicked is right answer
-        //if yes; ++point
-        //if no; reveal answer, --point
+        pointText.setText("Points: " + points);
+        showNext();
 
+
+    }
+
+    private void showNext() {
+
+        //new buttons//redo array
+        //
     }
 
     private String findAnswer(Question quest) {
