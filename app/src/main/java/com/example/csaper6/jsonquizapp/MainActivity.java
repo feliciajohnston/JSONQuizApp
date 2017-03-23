@@ -116,8 +116,23 @@ public class MainActivity extends AppCompatActivity {
         falseAnswers.add("Click Here");
         falseAnswers.add("Wrong Answer");
         //new question object
+        //mass, distance, temperature, volume of sun-earth
         questions.add(new Question("Sun","Mass"));
         questions.add(new Question("Mercury" , "Distance"));
+        questions.add(new Question("Venus", "Temperature"));
+        questions.add(new Question("Earth", "Volume"));
+        questions.add(new Question("Sun", "Temperature"));
+        questions.add(new Question("Mercury", "Mass"));
+        questions.add(new Question("Venus", "Distance"));
+        questions.add(new Question("Earth", "Distance"));
+        questions.add(new Question("Sun", "Volume"));
+        questions.add(new Question("Mercury", "Temperature"));
+        questions.add(new Question("Venus", "Mass"));
+        questions.add(new Question("Earth", "Mass"));
+        questions.add(new Question("Sun", "Distance"));
+        questions.add(new Question("Mercury", "Volume"));
+        questions.add(new Question("Venus", "Volume"));
+        questions.add(new Question("Earth", "Temperature"));
     }
 
     private String getFalseAnswer(){
@@ -203,7 +218,6 @@ public class MainActivity extends AppCompatActivity {
     private void showNext() {
         currentAnswers.clear();
         setDisplay();
-
     }
 
     private String findAnswer(Question quest) {
