@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Problem> problems;
     private ArrayList<String> falseAnswers;
     private Map<String, Integer> planetCats;
-    private boolean correct = false;
     private int points = 0;
     private View coordinatorLayout;
 
@@ -143,8 +141,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkAnswer(int i) {
         if(currentAnswers.get(i).getCorrect())
         {
-            Toast.makeText(MainActivity.this, "CORRECT", Toast.LENGTH_SHORT).show();
-            correct = true;
+
             points++;
             Snackbar snackbar = Snackbar.make(coordinatorLayout, "Correct", Snackbar.LENGTH_INDEFINITE).setAction("Next", new View.OnClickListener() {
                 @Override
@@ -155,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
             snackbar.show();
         }
         else{
-            Toast.makeText(MainActivity.this, "WRONG", Toast.LENGTH_SHORT).show();
+
             points--;
             Snackbar snackbar = Snackbar.make(coordinatorLayout, "Correct Answer", Snackbar.LENGTH_INDEFINITE).setAction("Next", new View.OnClickListener() {
                 @Override
@@ -170,7 +167,6 @@ public class MainActivity extends AppCompatActivity {
         //if yes; ++point
         //if no; reveal answer, --point
 
-        correct = false;
     }
 
     private String findAnswer(Question quest) {
