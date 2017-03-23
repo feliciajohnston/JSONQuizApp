@@ -98,6 +98,14 @@ public class MainActivity extends AppCompatActivity {
         falseAnswers.add("440");
         falseAnswers.add("3.3011×10^23");
         falseAnswers.add("108,939,000");
+        falseAnswers.add("10");
+        falseAnswers.add("300");
+        falseAnswers.add("568");
+        falseAnswers.add("21");
+        falseAnswers.add("Correct Answer");
+        falseAnswers.add("Pick Me");
+        falseAnswers.add("Click Here");
+        falseAnswers.add("Wrong Answer");
         //new question object
         questions.add(new Question("Sun","Mass"));
         questions.add(new Question("Mercury" , "Distance"));
