@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private Map<String, Integer> planetCats;
     private String snackBarAnswer;
     private int points = 0;
+    private int currentQuestion;
     private View coordinatorLayout;
 
 
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        currentQuestion = 0;
         planetCats = new HashMap<>();
         falseAnswers = new ArrayList<>();
         currentAnswers = new ArrayList<>();
@@ -122,9 +124,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setDisplay() {
-        randProb = problems.get((int) (Math.random() * questions.size() -1 ));
-        setButtons();
-        questionText.setText(randProb.getQuest().getQuestion());
+        if(currentQuestion > problems.size() -1){
+            questionText.setText("Done with Quiz!");
+            butt1.setVisibility(View.GONE);
+            butt2.setVisibility(View.GONE);
+            butt3.setVisibility(View.GONE);
+            butt4.setVisibility(View.GONE);
+        }
+        else{
+            randProb = problems.get(currentQuestion);
+            setButtons();
+            questionText.setText(randProb.getQuest().getQuestion());
+            currentQuestion++;
+        }
     }
 
     private void setButtons() {
@@ -146,7 +158,6 @@ public class MainActivity extends AppCompatActivity {
             Snackbar snackbar = Snackbar.make(coordinatorLayout, "Correct", Snackbar.LENGTH_INDEFINITE).setAction("Next", new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    setDisplay();
                 }
             });
             snackbar.show();
@@ -163,7 +174,6 @@ public class MainActivity extends AppCompatActivity {
             Snackbar snackbar = Snackbar.make(coordinatorLayout, "Answer: " + snackBarAnswer, Snackbar.LENGTH_INDEFINITE).setAction("Next", new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    setDisplay();
                 }
             });
             snackbar.show();
@@ -177,9 +187,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showNext() {
+        currentAnswers.clear();
+        setDisplay();
 
-        //new buttons//redo array
-        //
     }
 
     private String findAnswer(Question quest) {
