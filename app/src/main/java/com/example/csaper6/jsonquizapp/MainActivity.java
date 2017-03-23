@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Problem> problems;
     private ArrayList<String> falseAnswers;
     private Map<String, Integer> planetCats;
+    private String snackBarAnswer;
     private int points = 0;
     private View coordinatorLayout;
 
@@ -152,9 +153,15 @@ public class MainActivity extends AppCompatActivity {
             snackbar.show();
         }
         else{
-
+            for(int j = 0; j < 4; j++)
+            {
+                if(currentAnswers.get(j).getCorrect())
+                {
+                    snackBarAnswer = currentAnswers.get(j).getAnswer();
+                }
+            }
             points--;
-            Snackbar snackbar = Snackbar.make(coordinatorLayout, "Correct Answer", Snackbar.LENGTH_INDEFINITE).setAction("Next", new View.OnClickListener() {
+            Snackbar snackbar = Snackbar.make(coordinatorLayout, "Answer: " + snackBarAnswer, Snackbar.LENGTH_INDEFINITE).setAction("Next", new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     setDisplay();
