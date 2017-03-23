@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
-    private Button butt1, butt2, butt3, butt4;
+    private Button butt1, butt2, butt3, butt4, resetButt;
     private TextView questionText, pointText;
     private Problem randProb;
     private ArrayList<Question> questions;
@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         butt2 = (Button) findViewById(R.id.button2);
         butt3 = (Button) findViewById(R.id.button3);
         butt4 = (Button) findViewById(R.id.button4);
+        resetButt = (Button) findViewById(R.id.button5);
         questionText = (TextView) findViewById(R.id.textView);
         pointText = (TextView) findViewById(R.id.textView2);
         coordinatorLayout = findViewById(R.id.coordinatorLayout);
@@ -83,6 +84,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkAnswer(3);
+            }
+        });
+        resetButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                currentQuestion = 0;
+                setDisplay();
             }
         });
 
@@ -130,8 +138,14 @@ public class MainActivity extends AppCompatActivity {
             butt2.setVisibility(View.GONE);
             butt3.setVisibility(View.GONE);
             butt4.setVisibility(View.GONE);
+            resetButt.setVisibility(View.VISIBLE);
         }
         else{
+            butt1.setVisibility(View.VISIBLE);
+            butt2.setVisibility(View.VISIBLE);
+            butt3.setVisibility(View.VISIBLE);
+            butt4.setVisibility(View.VISIBLE);
+            resetButt.setVisibility(View.GONE);
             randProb = problems.get(currentQuestion);
             setButtons();
             questionText.setText(randProb.getQuest().getQuestion());
