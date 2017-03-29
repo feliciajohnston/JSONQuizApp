@@ -15,7 +15,7 @@
         tools:context="com.example.csaper6.jsonquizapp.MainActivity"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="false"
-        android:id="@+id/transitions_container">
+        android:id="@+id/layout">
 
 
         <TextView
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:text="@string/random_question"
             android:textSize="20sp"
-            android:layout_marginTop="115dp"
+            android:layout_marginTop="54dp"
             android:layout_below="@+id/textView2"
             android:layout_centerHorizontal="true" />
 
@@ -39,7 +39,7 @@
             android:textSize="15sp" />
 
         <TableLayout
-            android:id="@+id/tableLayout"
+            android:id="@+id/transitions_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView"
@@ -55,14 +55,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
-                    android:layout_column="0" />
+                    android:layout_column="0"
+                    android:textColor="#FF4081"
+                    android:backgroundTint="#D3D3D3" />
 
                 <Button
                     android:id="@+id/button2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
-                    android:layout_column="1" />
+                    android:layout_column="1"
+                    android:textColor="#FF4081"
+                    android:backgroundTint="#D3D3D3" />
 
             </TableRow>
 
@@ -74,13 +78,17 @@
                     android:id="@+id/button3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textColor="#FF4081"
+                    android:backgroundTint="#D3D3D3" />
 
                 <Button
                     android:id="@+id/button4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textColor="#FF4081"
+                    android:backgroundTint="#D3D3D3" />
             </TableRow>
 
         </TableLayout>
@@ -89,17 +97,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button5"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="40dp"
-            android:text="@string/reset_quiz" />
+            android:text="@string/reset_quiz"
+            android:textColor="#FF4081"
+            android:backgroundTint="#D3D3D3"
+            android:layout_below="@+id/button6"
+            android:layout_centerHorizontal="true" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next"
+            android:text="@string/next"
             android:id="@+id/button6"
-            android:layout_alignTop="@+id/button5"
+            android:backgroundTint="#D3D3D3"
+            android:textColor="#FF4081"
+            android:layout_below="@+id/transitions_container"
             android:layout_centerHorizontal="true" />
 
     </RelativeLayout>

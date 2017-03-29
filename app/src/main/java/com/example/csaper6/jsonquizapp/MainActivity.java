@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         setDisplay();
 
         butt1.setOnClickListener(new View.OnClickListener() {
-            boolean mColorsInverted;
+            boolean mColorsInverted = false;
             @Override
             public void onClick(View view) {
                 TransitionManager.beginDelayedTransition(transitionsContainer, new Recolor());
@@ -88,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
                 TransitionManager.beginDelayedTransition(transitionsContainer, new Recolor());
 
                 mColorsInverted = !mColorsInverted;
-                butt2.setTextColor(getResources().getColor(!mColorsInverted ? R.color.colorAccent2 : R.color.colorAccent));
-                butt2.setBackgroundDrawable(new ColorDrawable(getResources().getColor(!mColorsInverted ? R.color.colorAccent : R.color.colorAccent2)));
+                butt2.setTextColor(getResources().getColor(!mColorsInverted ? R.color.colorAccent : R.color.colorAccent2));
+                butt2.setBackgroundDrawable(new ColorDrawable(getResources().getColor(!mColorsInverted ? R.color.colorAccent2 : R.color.colorAccent)));
                 checkAnswer(1);
             }
         });
@@ -100,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
                 TransitionManager.beginDelayedTransition(transitionsContainer, new Recolor());
 
                 mColorsInverted = !mColorsInverted;
-                butt3.setTextColor(getResources().getColor(!mColorsInverted ? R.color.colorAccent2 : R.color.colorAccent));
-                butt3.setBackgroundDrawable(new ColorDrawable(getResources().getColor(!mColorsInverted ? R.color.colorAccent : R.color.colorAccent2)));
+                butt3.setTextColor(getResources().getColor(!mColorsInverted ? R.color.colorAccent : R.color.colorAccent2));
+                butt3.setBackgroundDrawable(new ColorDrawable(getResources().getColor(!mColorsInverted ? R.color.colorAccent2 : R.color.colorAccent)));
                 checkAnswer(2);
             }
         });
@@ -112,8 +112,8 @@ public class MainActivity extends AppCompatActivity {
                 TransitionManager.beginDelayedTransition(transitionsContainer, new Recolor());
 
                 mColorsInverted = !mColorsInverted;
-                butt4.setTextColor(getResources().getColor(!mColorsInverted ? R.color.colorAccent2 : R.color.colorAccent));
-                butt4.setBackgroundDrawable(new ColorDrawable(getResources().getColor(!mColorsInverted ? R.color.colorAccent : R.color.colorAccent2)));
+                butt4.setTextColor(getResources().getColor(!mColorsInverted ? R.color.colorAccent : R.color.colorAccent2));
+                butt4.setBackgroundDrawable(new ColorDrawable(getResources().getColor(!mColorsInverted ? R.color.colorAccent2 : R.color.colorAccent)));
                 checkAnswer(3);
             }
         });

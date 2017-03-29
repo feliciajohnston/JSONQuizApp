@@ -3,4 +3,5 @@
     <string name="random_question">Random Question</string>
     <string name="points">Points:</string>
     <string name="reset_quiz">Reset Quiz</string>
+    <string name="next">Next</string>
 </resources>
