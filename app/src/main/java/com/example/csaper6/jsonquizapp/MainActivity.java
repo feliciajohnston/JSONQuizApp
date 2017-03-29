@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
-    private Button butt1, butt2, butt3, butt4, resetButt;
+    private Button butt1, butt2, butt3, butt4, resetButt, nextButt;
     private TextView questionText, pointText;
     private Problem randProb;
     private ArrayList<Question> questions;
@@ -56,10 +56,11 @@ public class MainActivity extends AppCompatActivity {
         problems = new ArrayList<>();
 
         butt1 = (Button) transitionsContainer.findViewById(R.id.button);
-        butt2 = (Button) findViewById(R.id.button2);
-        butt3 = (Button) findViewById(R.id.button3);
-        butt4 = (Button) findViewById(R.id.button4);
+        butt2 = (Button) transitionsContainer.findViewById(R.id.button2);
+        butt3 = (Button) transitionsContainer.findViewById(R.id.button3);
+        butt4 = (Button) transitionsContainer.findViewById(R.id.button4);
         resetButt = (Button) findViewById(R.id.button5);
+        nextButt = (Button) findViewById(R.id.button6);
         questionText = (TextView) findViewById(R.id.textView);
         pointText = (TextView) findViewById(R.id.textView2);
         coordinatorLayout = findViewById(R.id.coordinatorLayout);
@@ -81,20 +82,38 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         butt2.setOnClickListener(new View.OnClickListener() {
+            boolean mColorsInverted;
             @Override
             public void onClick(View view) {
+                TransitionManager.beginDelayedTransition(transitionsContainer, new Recolor());
+
+                mColorsInverted = !mColorsInverted;
+                butt2.setTextColor(getResources().getColor(!mColorsInverted ? R.color.colorAccent2 : R.color.colorAccent));
+                butt2.setBackgroundDrawable(new ColorDrawable(getResources().getColor(!mColorsInverted ? R.color.colorAccent : R.color.colorAccent2)));
                 checkAnswer(1);
             }
         });
         butt3.setOnClickListener(new View.OnClickListener() {
+            boolean mColorsInverted;
             @Override
             public void onClick(View view) {
+                TransitionManager.beginDelayedTransition(transitionsContainer, new Recolor());
+
+                mColorsInverted = !mColorsInverted;
+                butt3.setTextColor(getResources().getColor(!mColorsInverted ? R.color.colorAccent2 : R.color.colorAccent));
+                butt3.setBackgroundDrawable(new ColorDrawable(getResources().getColor(!mColorsInverted ? R.color.colorAccent : R.color.colorAccent2)));
                 checkAnswer(2);
             }
         });
         butt4.setOnClickListener(new View.OnClickListener() {
+            boolean mColorsInverted;
             @Override
             public void onClick(View view) {
+                TransitionManager.beginDelayedTransition(transitionsContainer, new Recolor());
+
+                mColorsInverted = !mColorsInverted;
+                butt4.setTextColor(getResources().getColor(!mColorsInverted ? R.color.colorAccent2 : R.color.colorAccent));
+                butt4.setBackgroundDrawable(new ColorDrawable(getResources().getColor(!mColorsInverted ? R.color.colorAccent : R.color.colorAccent2)));
                 checkAnswer(3);
             }
         });
@@ -103,6 +122,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 currentQuestion = 0;
                 setDisplay();
+            }
+        });
+        nextButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showNext();
             }
         });
 
@@ -165,12 +190,14 @@ public class MainActivity extends AppCompatActivity {
             butt2.setVisibility(View.GONE);
             butt3.setVisibility(View.GONE);
             butt4.setVisibility(View.GONE);
+            nextButt.setVisibility(View.GONE);
             resetButt.setVisibility(View.VISIBLE);
         } else {
             butt1.setVisibility(View.VISIBLE);
             butt2.setVisibility(View.VISIBLE);
             butt3.setVisibility(View.VISIBLE);
             butt4.setVisibility(View.VISIBLE);
+            nextButt.setVisibility(View.VISIBLE);
             resetButt.setVisibility(View.GONE);
             randProb = problems.get(currentQuestion);
             setButtons();
@@ -218,9 +245,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         pointText.setText("Points: " + points);
-
-        showNext();
-
 
     }
 
