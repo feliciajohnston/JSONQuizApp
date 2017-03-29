@@ -14,7 +14,8 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context="com.example.csaper6.jsonquizapp.MainActivity"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="false">
+        android:layout_alignParentStart="false"
+        android:id="@+id/transitions_container">
 
 
         <TextView
@@ -91,7 +92,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="40dp"
-            android:text="Reset Quiz" />
+            android:text="@string/reset_quiz" />
 
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

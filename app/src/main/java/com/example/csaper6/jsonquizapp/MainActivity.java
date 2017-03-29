@@ -1,12 +1,17 @@
 package com.example.csaper6.jsonquizapp;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.transitionseverywhere.Recolor;
+import com.transitionseverywhere.TransitionManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final ViewGroup transitionsContainer = (ViewGroup) findViewById(R.id.transitions_container);
 
         currentQuestion = 0;
         planetCats = new HashMap<>();
@@ -48,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
         currentAnswers = new ArrayList<>();
         questions = new ArrayList<>();
         problems = new ArrayList<>();
-        //wire widgets
-        butt1 = (Button) findViewById(R.id.button);
+
+        butt1 = (Button) transitionsContainer.findViewById(R.id.button);
         butt2 = (Button) findViewById(R.id.button2);
         butt3 = (Button) findViewById(R.id.button3);
         butt4 = (Button) findViewById(R.id.button4);
@@ -63,8 +69,14 @@ public class MainActivity extends AppCompatActivity {
         setDisplay();
 
         butt1.setOnClickListener(new View.OnClickListener() {
+            boolean mColorsInverted;
             @Override
             public void onClick(View view) {
+                TransitionManager.beginDelayedTransition(transitionsContainer, new Recolor());
+
+                mColorsInverted = !mColorsInverted;
+                butt1.setTextColor(getResources().getColor(!mColorsInverted ? R.color.colorAccent2 : R.color.colorAccent));
+                butt1.setBackgroundDrawable(new ColorDrawable(getResources().getColor(!mColorsInverted ? R.color.colorAccent : R.color.colorAccent2)));
                 checkAnswer(0);
             }
         });
@@ -117,8 +129,8 @@ public class MainActivity extends AppCompatActivity {
         falseAnswers.add("Wrong Answer");
         //new question object
         //mass, distance, temperature, volume of sun-earth
-        questions.add(new Question("Sun","Mass"));
-        questions.add(new Question("Mercury" , "Distance"));
+        questions.add(new Question("Sun", "Mass"));
+        questions.add(new Question("Mercury", "Distance"));
         questions.add(new Question("Venus", "Temperature"));
         questions.add(new Question("Earth", "Volume"));
         questions.add(new Question("Sun", "Temperature"));
@@ -135,27 +147,26 @@ public class MainActivity extends AppCompatActivity {
         questions.add(new Question("Earth", "Temperature"));
     }
 
-    private String getFalseAnswer(){
-        return falseAnswers.get((int) (Math.random() * falseAnswers.size() -1 ));
+    private String getFalseAnswer() {
+        return falseAnswers.get((int) (Math.random() * falseAnswers.size() - 1));
     }
 
     private void createProblems() {
-        for(int i = 0; i <= questions.size()-1; i++){
+        for (int i = 0; i <= questions.size() - 1; i++) {
             problems.add(new Problem(questions.get(i), new Answer(findAnswer(questions.get(i)), true),
-                    new Answer(getFalseAnswer(), false) , new Answer(getFalseAnswer(), false), new Answer(getFalseAnswer(), false)));
+                    new Answer(getFalseAnswer(), false), new Answer(getFalseAnswer(), false), new Answer(getFalseAnswer(), false)));
         }
     }
 
     private void setDisplay() {
-        if(currentQuestion > problems.size() -1){
+        if (currentQuestion > problems.size() - 1) {
             questionText.setText("Done with Quiz!");
             butt1.setVisibility(View.GONE);
             butt2.setVisibility(View.GONE);
             butt3.setVisibility(View.GONE);
             butt4.setVisibility(View.GONE);
             resetButt.setVisibility(View.VISIBLE);
-        }
-        else{
+        } else {
             butt1.setVisibility(View.VISIBLE);
             butt2.setVisibility(View.VISIBLE);
             butt3.setVisibility(View.VISIBLE);
@@ -180,9 +191,9 @@ public class MainActivity extends AppCompatActivity {
         butt4.setText(currentAnswers.get(3).getAnswer());
     }
 
-    private void checkAnswer(int i) {
-        if(currentAnswers.get(i).getCorrect())
-        {
+    private void checkAnswer(int i){
+
+        if (currentAnswers.get(i).getCorrect()) {
             points++;
             Snackbar snackbar = Snackbar.make(coordinatorLayout, "Correct", Snackbar.LENGTH_INDEFINITE).setAction("Next", new View.OnClickListener() {
                 @Override
@@ -190,12 +201,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             snackbar.show();
-        }
-        else{
-            for(int j = 0; j < 4; j++)
-            {
-                if(currentAnswers.get(j).getCorrect())
-                {
+
+        } else {
+            for (int j = 0; j < 4; j++) {
+                if (currentAnswers.get(j).getCorrect()) {
                     snackBarAnswer = currentAnswers.get(j).getAnswer();
                 }
             }
@@ -226,8 +235,8 @@ public class MainActivity extends AppCompatActivity {
         try {
             String[] files = getAssets().list("");
             String fileNames = "";
-            for(String s : files) {
-                fileNames+=s + " ";
+            for (String s : files) {
+                fileNames += s + " ";
 
             }
             Log.d(TAG, "findAnswer: " + fileNames);
@@ -235,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
             BufferedReader reader = new BufferedReader(new InputStreamReader(fileInput));
             String line;
 
-            while((line = reader.readLine()) != null){
+            while ((line = reader.readLine()) != null) {
                 jsonString += line;
             }
         } catch (IOException e) {
@@ -249,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        if(jsonData != null){
+        if (jsonData != null) {
             Log.d(TAG, "findAnswer: " + planetCats.get(quest.getVariable()));
             answer = jsonData.optJSONArray(quest.getObject()).optJSONObject(planetCats.get(quest.getVariable())).optString(quest.getVariable());
         }
@@ -257,5 +266,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    // clear display after answered!! (clear answer array)
 }
