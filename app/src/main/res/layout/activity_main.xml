@@ -57,7 +57,8 @@
                     android:textSize="15sp"
                     android:layout_column="0"
                     android:textColor="#FF4081"
-                    android:backgroundTint="#D3D3D3" />
+                    android:backgroundTint="#D3D3D3"
+                    android:layout_margin="5dp" />
 
                 <Button
                     android:id="@+id/button2"
@@ -66,7 +67,8 @@
                     android:textSize="15sp"
                     android:layout_column="1"
                     android:textColor="#FF4081"
-                    android:backgroundTint="#D3D3D3" />
+                    android:backgroundTint="#D3D3D3"
+                    android:layout_margin="5dp" />
 
             </TableRow>
 
@@ -80,7 +82,8 @@
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:textColor="#FF4081"
-                    android:backgroundTint="#D3D3D3" />
+                    android:backgroundTint="#D3D3D3"
+                    android:layout_margin="5dp" />
 
                 <Button
                     android:id="@+id/button4"
@@ -88,7 +91,8 @@
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:textColor="#FF4081"
-                    android:backgroundTint="#D3D3D3" />
+                    android:backgroundTint="#D3D3D3"
+                    android:layout_margin="5dp" />
             </TableRow>
 
         </TableLayout>
@@ -112,6 +116,15 @@
             android:textColor="#FF4081"
             android:layout_below="@+id/transitions_container"
             android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="✧ .✧・✧｡・Magic Transitions✧ .・✧゜✧ ・✧"
+            android:id="@+id/textView3"
+            android:layout_below="@+id/button5"
+            android:layout_centerHorizontal="true"
+            android:textColor="#cc00ff" />
 
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

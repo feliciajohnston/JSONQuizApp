@@ -1,6 +1,5 @@
 package com.example.csaper6.jsonquizapp;
 
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.transitionseverywhere.Recolor;
 import com.transitionseverywhere.TransitionManager;
 
 import org.json.JSONException;
@@ -28,7 +26,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
     private Button butt1, butt2, butt3, butt4, resetButt, nextButt;
-    private TextView questionText, pointText;
+    private TextView questionText, pointText, magicText;
     private Problem randProb;
     private ArrayList<Question> questions;
     private ArrayList<Answer> currentAnswers;
@@ -55,65 +53,42 @@ public class MainActivity extends AppCompatActivity {
         questions = new ArrayList<>();
         problems = new ArrayList<>();
 
-        butt1 = (Button) transitionsContainer.findViewById(R.id.button);
-        butt2 = (Button) transitionsContainer.findViewById(R.id.button2);
-        butt3 = (Button) transitionsContainer.findViewById(R.id.button3);
-        butt4 = (Button) transitionsContainer.findViewById(R.id.button4);
+        butt1 = (Button) findViewById(R.id.button);
+        butt2 = (Button) findViewById(R.id.button2);
+        butt3 = (Button) findViewById(R.id.button3);
+        butt4 = (Button) findViewById(R.id.button4);
         resetButt = (Button) findViewById(R.id.button5);
         nextButt = (Button) findViewById(R.id.button6);
         questionText = (TextView) findViewById(R.id.textView);
         pointText = (TextView) findViewById(R.id.textView2);
         coordinatorLayout = findViewById(R.id.coordinatorLayout);
+        magicText = (TextView) findViewById(R.id.textView3);
 
         setArrays();
         createProblems();
         setDisplay();
 
         butt1.setOnClickListener(new View.OnClickListener() {
-            boolean mColorsInverted = false;
             @Override
             public void onClick(View view) {
-                TransitionManager.beginDelayedTransition(transitionsContainer, new Recolor());
-
-                mColorsInverted = !mColorsInverted;
-                butt1.setTextColor(getResources().getColor(!mColorsInverted ? R.color.colorAccent2 : R.color.colorAccent));
-                butt1.setBackgroundDrawable(new ColorDrawable(getResources().getColor(!mColorsInverted ? R.color.colorAccent : R.color.colorAccent2)));
                 checkAnswer(0);
             }
         });
         butt2.setOnClickListener(new View.OnClickListener() {
-            boolean mColorsInverted;
             @Override
             public void onClick(View view) {
-                TransitionManager.beginDelayedTransition(transitionsContainer, new Recolor());
-
-                mColorsInverted = !mColorsInverted;
-                butt2.setTextColor(getResources().getColor(!mColorsInverted ? R.color.colorAccent : R.color.colorAccent2));
-                butt2.setBackgroundDrawable(new ColorDrawable(getResources().getColor(!mColorsInverted ? R.color.colorAccent2 : R.color.colorAccent)));
                 checkAnswer(1);
             }
         });
         butt3.setOnClickListener(new View.OnClickListener() {
-            boolean mColorsInverted;
             @Override
             public void onClick(View view) {
-                TransitionManager.beginDelayedTransition(transitionsContainer, new Recolor());
-
-                mColorsInverted = !mColorsInverted;
-                butt3.setTextColor(getResources().getColor(!mColorsInverted ? R.color.colorAccent : R.color.colorAccent2));
-                butt3.setBackgroundDrawable(new ColorDrawable(getResources().getColor(!mColorsInverted ? R.color.colorAccent2 : R.color.colorAccent)));
                 checkAnswer(2);
             }
         });
         butt4.setOnClickListener(new View.OnClickListener() {
-            boolean mColorsInverted;
             @Override
             public void onClick(View view) {
-                TransitionManager.beginDelayedTransition(transitionsContainer, new Recolor());
-
-                mColorsInverted = !mColorsInverted;
-                butt4.setTextColor(getResources().getColor(!mColorsInverted ? R.color.colorAccent : R.color.colorAccent2));
-                butt4.setBackgroundDrawable(new ColorDrawable(getResources().getColor(!mColorsInverted ? R.color.colorAccent2 : R.color.colorAccent)));
                 checkAnswer(3);
             }
         });
@@ -125,8 +100,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         nextButt.setOnClickListener(new View.OnClickListener() {
+            boolean visible;
             @Override
             public void onClick(View view) {
+                TransitionManager.beginDelayedTransition(transitionsContainer);
+                visible = !visible;
+                magicText.setVisibility(visible ? View.VISIBLE : View.GONE);
                 showNext();
             }
         });
@@ -135,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setArrays() {
         //hashmap vars
+        //cat = categories
         planetCats.put("Distance", 0);
         planetCats.put("Mass", 1);
         planetCats.put("Temperature", 2);
